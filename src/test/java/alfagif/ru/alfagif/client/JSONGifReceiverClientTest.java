@@ -1,0 +1,47 @@
+package alfagif.ru.alfagif.client;
+
+import alfagif.ru.alfagif.model.GifDTO;
+import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.Objects;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest
+class JSONGifReceiverClientTest {
+
+    @Autowired
+    JSONGifReceiverClient jsonGifClient;
+
+    @Value("${giphy.api.key}")
+    private String api_key;
+    @Value("${giphy.tag.broke}")
+    private String tag_broke;
+    @Value("${giphy.tag.rich}")
+    private String tag_rich;
+
+    @Test
+    void getBrokeGifJSON() throws Exception {
+        ResponseEntity<GifDTO> response = jsonGifClient.getRandomGifJSON(api_key, tag_broke);
+        assertAll(
+                () -> assertNotNull(response.getBody()),
+                () -> assertNotNull(Objects.requireNonNull(response.getBody()).getData().get("image_original_url"))
+        );
+    }
+
+    @Test
+    void getRichGifJSON() throws Exception {
+        ResponseEntity<GifDTO> response = jsonGifClient.getRandomGifJSON(api_key,tag_rich);
+        assertAll(
+                () -> assertNotNull(response.getBody()),
+                () -> assertNotNull(Objects.requireNonNull(response.getBody()).getData().get("image_original_url"))
+        );
+    }
+}
