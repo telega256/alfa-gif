@@ -18,19 +18,19 @@ class GifReceiverServiceTest {
     GifReceiverService gifService;
 
     @Value("${giphy.tag.broke}")
-    private String tag_broke;
+    private String tagBroke;
     @Value("${giphy.tag.rich}")
-    private String tag_rich;
+    private String tagRich;
 
     @Test
     void getBrokeGif() throws Exception {
-        ResponseEntity<byte[]> result = gifService.getRandomGif(tag_broke);
+        ResponseEntity<byte[]> result = gifService.getRandomGif(tagBroke);
         assertNotEquals(0, result.getBody().length);
     }
 
     @Test
     void getRichGif() throws Exception {
-        ResponseEntity<byte[]> result = gifService.getRandomGif(tag_rich);
+        ResponseEntity<byte[]> result = gifService.getRandomGif(tagRich);
         assertNotEquals(0, result.getBody().length);
     }
 }

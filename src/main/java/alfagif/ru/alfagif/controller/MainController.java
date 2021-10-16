@@ -2,7 +2,7 @@ package alfagif.ru.alfagif.controller;
 
 import alfagif.ru.alfagif.service.Interface.GifReceiverService;
 import alfagif.ru.alfagif.service.Interface.OpenExchangeRateService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,24 +12,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/alfa-gif")
+@RequiredArgsConstructor
 public class MainController {
 
-    private GifReceiverService gifService;
-    private OpenExchangeRateService exchangeService;
+     private final GifReceiverService gifService;
+     private final OpenExchangeRateService exchangeService;
 
     @Value("${giphy.tag.broke}")
     private String tag_broke;
     @Value("${giphy.tag.rich}")
     private String tag_rich;
-
-    @Autowired
-    public MainController(
-            GifReceiverService gifService,
-            OpenExchangeRateService exchangeService
-    ) {
-        this.gifService = gifService;
-        this.exchangeService = exchangeService;
-    }
 
     /*
     Возвращает случайную гифку в зависимости от курса переданной валюты к рублю

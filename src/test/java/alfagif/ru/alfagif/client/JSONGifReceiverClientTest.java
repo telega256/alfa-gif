@@ -21,15 +21,15 @@ class JSONGifReceiverClientTest {
     JSONGifReceiverClient jsonGifClient;
 
     @Value("${giphy.api.key}")
-    private String api_key;
+    private String apiKey;
     @Value("${giphy.tag.broke}")
-    private String tag_broke;
+    private String tagBroke;
     @Value("${giphy.tag.rich}")
-    private String tag_rich;
+    private String tagRich;
 
     @Test
     void getBrokeGifJSON() throws Exception {
-        ResponseEntity<GifDTO> response = jsonGifClient.getRandomGifJSON(api_key, tag_broke);
+        ResponseEntity<GifDTO> response = jsonGifClient.getRandomGifJSON(apiKey, tagBroke);
         assertAll(
                 () -> assertNotNull(response.getBody()),
                 () -> assertNotNull(Objects.requireNonNull(response.getBody()).getData().get("image_original_url"))
@@ -38,7 +38,7 @@ class JSONGifReceiverClientTest {
 
     @Test
     void getRichGifJSON() throws Exception {
-        ResponseEntity<GifDTO> response = jsonGifClient.getRandomGifJSON(api_key,tag_rich);
+        ResponseEntity<GifDTO> response = jsonGifClient.getRandomGifJSON(apiKey, tagRich);
         assertAll(
                 () -> assertNotNull(response.getBody()),
                 () -> assertNotNull(Objects.requireNonNull(response.getBody()).getData().get("image_original_url"))

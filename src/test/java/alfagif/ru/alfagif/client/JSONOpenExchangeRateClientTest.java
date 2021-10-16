@@ -23,13 +23,13 @@ class JSONOpenExchangeRateClientTest {
     JSONOpenExchangeRateClient jsonExchangeRateClient;
 
     @Value("${openexchangerates.app.id}")
-    private String app_id;
+    private String appId;
     @Value("${openexchangerates.base.usd}")
-    private String base_usd;
+    private String baseUsd;
 
     @Test
     void getLatestRate() throws Exception {
-        ResponseEntity<ExchangeDTO> response = jsonExchangeRateClient.getLatestRates(app_id, base_usd);
+        ResponseEntity<ExchangeDTO> response = jsonExchangeRateClient.getLatestRates(appId, baseUsd);
         assertAll(
                 () -> assertNotNull(response.getBody()),
                 () -> assertNotNull(Objects.requireNonNull(response.getBody()).getRates().get("RUB"))
@@ -39,7 +39,7 @@ class JSONOpenExchangeRateClientTest {
     @Test
     void getHistoricalRate() throws Exception {
         String yesterday = (LocalDate.now().minusDays(1)).format(DateTimeFormatter.ISO_DATE);
-        ResponseEntity<ExchangeDTO> response = jsonExchangeRateClient.getHistoricalRates(yesterday, app_id, base_usd);
+        ResponseEntity<ExchangeDTO> response = jsonExchangeRateClient.getHistoricalRates(yesterday, appId, baseUsd);
         assertAll(
                 () -> assertNotNull(response.getBody()),
                 () -> assertNotNull(Objects.requireNonNull(response.getBody()).getRates().get("RUB"))
