@@ -53,9 +53,7 @@ docker run -p 8080:8080 docker.io/library/alfa-gif
 ```
 # Примечание
 - Бесплатный тарифный план openexchangerates.org предоставляет информацию только для валюты 'USD' и ограничен 1000 запросами в месяц, 
-поэтому данный сервис возвращает gif-изображение только для валюты 'git clone https://github.com/telega256/alfa-gif.git
-gradlew build && java -jar build/libs/alfa-gif-0.0.1.jar
-USD', иначе выдает ошибку.
+поэтому данный сервис возвращает gif-изображение только для валюты 'USD', иначе выдает ошибку.
 
 
 
