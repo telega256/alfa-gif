@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class MainController {
 
-     private final GifReceiverService gifService;
-     private final OpenExchangeRateService exchangeService;
+    private final GifReceiverService gifService;
+    private final OpenExchangeRateService exchangeService;
 
     @Value("${giphy.tag.broke}")
     private String tagBroke;
