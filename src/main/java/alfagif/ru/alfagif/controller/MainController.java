@@ -19,9 +19,9 @@ public class MainController {
      private final OpenExchangeRateService exchangeService;
 
     @Value("${giphy.tag.broke}")
-    private String tag_broke;
+    private String tagBroke;
     @Value("${giphy.tag.rich}")
-    private String tag_rich;
+    private String tagRich;
 
     /*
     Возвращает случайную гифку в зависимости от курса переданной валюты к рублю
@@ -30,7 +30,7 @@ public class MainController {
     public ResponseEntity<byte[]> ReceiveGif(@PathVariable String currency) {
         double todayRate = exchangeService.getLatestRate(currency);
         double yesterdayRate = exchangeService.getYesterdayRate(currency);
-        String result = (todayRate > yesterdayRate) ? tag_rich : tag_broke;
+        String result = (todayRate > yesterdayRate) ? tagRich : tagBroke;
         return gifService.getRandomGif(result);
     }
 }
